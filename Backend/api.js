@@ -166,20 +166,20 @@ app.get('/api/1.0/RS_signal', async (req, res) => {
     }
 });
 
-cron.schedule('* 8 * * *', async () => {
+cron.schedule('0 0 * * *', async () => {
     try {
         // 执行您的 API 逻辑，直接发起 HTTP 请求到 API 端点
         const response = await axios.get('http://localhost:5000/api/1.0/RS_signal');
         const responseData = response.data;
 
-        console.log('API任务已执行', responseData);
+        console.log('API 任务已执行', responseData);
     } catch (error) {
-        console.error('API任务发生错误:', error.message);
+        console.error('API 任务发生错误:', error.message);
         DiscordWebHookClient.send({
-            content: "排程出問題了 請檢查"
+            content: "排程出問題了，请检查"
         })
     }
-}, { timezone: "Asia/Taipei" });
+}, { timezone: "UTC" });
 
 app.get('/api/1.0/getJobs', async (req, res) => {
 
