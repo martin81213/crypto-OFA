@@ -166,10 +166,11 @@ app.get('/api/1.0/RS_signal', async (req, res) => {
     }
 });
 
-cron.schedule('0 0 * * *', async () => {
+// 52.63.5.206
+cron.schedule('59 7 * * *', async () => {
     try {
         // 执行您的 API 逻辑，直接发起 HTTP 请求到 API 端点
-        const response = await axios.get('http://localhost:5000/api/1.0/RS_signal');
+        const response = await axios.get('http://52.63.5.206/api/1.0/RS_signal');
         const responseData = response.data;
 
         console.log('API 任务已执行', responseData);
@@ -179,7 +180,7 @@ cron.schedule('0 0 * * *', async () => {
             content: "排程出問題了，请检查"
         })
     }
-}, { timezone: "UTC" });
+}, { timezone: "Asia/Taipei" });
 
 app.get('/api/1.0/getJobs', async (req, res) => {
 
