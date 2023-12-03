@@ -120,7 +120,7 @@ const Jobs = () => {
                 console.log(data)
             })
             .catch((error) => {
-                console.error("Error fetching news data:", error);
+                console.error("Error fetching jobs data:", error);
             });
     }, []);
 
