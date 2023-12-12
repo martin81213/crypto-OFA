@@ -37,7 +37,7 @@ const ExchangeBox = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(${props => props.backgroundImage});
+    background-image: url(${props => props.backgroundimage});
     background-size: cover;
     background-position: center;
     opacity: 0.05; // 默认透明度
@@ -136,7 +136,7 @@ const TwdComparison = () => {
     <StyleSheetManager shouldForwardProp={(prop) => prop !== 'backgroundimage'}>
       <Container>
         {sortedData.map((exchange, index) => (
-          <ExchangeBox key={index} href={exchange.url} backgroundImage={`./${exchange.name}.png`}>
+          <ExchangeBox key={index} href={exchange.url} backgroundimage={`./${exchange.name}.png`}>
             <ExchangeContentBox>
               {exchange === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
               {exchange !== cheapestExchange && <OtherIcon />}
@@ -150,7 +150,7 @@ const TwdComparison = () => {
           </ExchangeBox>
         ))}
         {/* Bitgin */}
-        <ExchangeBox backgroundImage="./bitgin.png">
+        <ExchangeBox backgroundimage="./bitgin.png">
           <ExchangeContentBox>
             {bitginData.responseData === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
             {bitginData.responseData !== cheapestExchange && <OtherIcon />}
