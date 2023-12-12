@@ -110,7 +110,10 @@ function Indicators() {
         console.log("requestedData: ", requestData)
 
         // 使用 fetch 或其他 HTTP 客戶端庫來呼叫 API
-        fetch("http://localhost:5000/api/1.0/getMA", {
+
+        //fetch("http://localhost:5000/api/1.0/getMA", {
+
+        fetch("http://52.63.5.206:5000/api/1.0/getMA", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

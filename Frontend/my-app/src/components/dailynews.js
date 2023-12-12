@@ -246,7 +246,8 @@ const DailyNews = () => {
     const [news, setNews] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/1.0/getNews")
+        //fetch("http://localhost:5000/api/1.0/getNews")
+        fetch("http://52.63.5.206:3000/api/1.0/getNews")
             .then((response) => response.json())
             .then((data) => {
                 console.log(data.data);

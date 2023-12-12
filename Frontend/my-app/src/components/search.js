@@ -54,7 +54,8 @@ const SearchComponent = ({ setJobData }) => {
             console.log("Performing search...");
             console.log(searchTerm);
     
-            const response = await fetch(`http://localhost:5000/api/1.0/search104?query=${searchTerm}`);
+            //const response = await fetch(`http://localhost:5000/api/1.0/search104?query=${searchTerm}`);
+            const response = await fetch(`http://52.63.5.206:5000/api/1.0/search104?query=${searchTerm}`);
     
             if (!response.ok) {
                 throw new Error("Network response was not ok");

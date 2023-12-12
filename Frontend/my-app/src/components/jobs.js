@@ -131,7 +131,8 @@ const Jobs = () => {
     console.log(jobData);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/1.0/getJobs")
+        //fetch("http://localhost:5000/api/1.0/getJobs")
+        fetch("http://52.63.5.206:5000/api/1.0/getJobs")
             .then((response) => response.json())
             .then((data) => {
                 setJobData(data.data[0])
