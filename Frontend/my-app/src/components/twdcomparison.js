@@ -36,7 +36,7 @@ const ExchangeBox = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(${props => props.backgroundimage});
+    background-image: url(${props => props.$backgroundimage});
     background-size: cover;
     background-position: center;
     opacity: 0.05; // 默认透明度
@@ -134,7 +134,7 @@ const TwdComparison = () => {
   return (
     <Container>
       {sortedData.map((exchange, index) => (
-        <ExchangeBox key={index} href={exchange.url} backgroundimage={`./${exchange.name}.png`}>
+        <ExchangeBox key={index} href={exchange.url} $backgroundimage={`./${exchange.name}.png`}>
           <ExchangeContentBox>
             {exchange === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
             {exchange !== cheapestExchange && <OtherIcon />}
