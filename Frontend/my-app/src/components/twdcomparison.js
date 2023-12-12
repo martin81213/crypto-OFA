@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useQuery } from 'react-query';
+import { StyleSheetManager } from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ const ExchangeBox = styled.a`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(${props => props.$backgroundimage});
+    background-image: url(${props => props.backgroundImage});
     background-size: cover;
     background-position: center;
     opacity: 0.05; // 默认透明度
@@ -132,35 +133,37 @@ const TwdComparison = () => {
   const cheapestExchange = sortedData[0];
 
   return (
-    <Container>
-      {sortedData.map((exchange, index) => (
-        <ExchangeBox key={index} href={exchange.url} $backgroundimage={`./${exchange.name}.png`}>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== 'backgroundimage'}>
+      <Container>
+        {sortedData.map((exchange, index) => (
+          <ExchangeBox key={index} href={exchange.url} backgroundImage={`./${exchange.name}.png`}>
+            <ExchangeContentBox>
+              {exchange === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
+              {exchange !== cheapestExchange && <OtherIcon />}
+              <ExchangeName>{exchange.name}</ExchangeName>
+              <ExchangeRates>
+                <Rate>買價: {exchange.buy_rate}</Rate>
+                <Rate>賣價: {exchange.sell_rate}</Rate>
+              </ExchangeRates>
+              <UpdateTime>Last updated: {new Date(Number(exchange.update_time)).toLocaleString()}</UpdateTime>
+            </ExchangeContentBox>
+          </ExchangeBox>
+        ))}
+        {/* Bitgin */}
+        <ExchangeBox backgroundImage="./bitgin.png">
           <ExchangeContentBox>
-            {exchange === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
-            {exchange !== cheapestExchange && <OtherIcon />}
-            <ExchangeName>{exchange.name}</ExchangeName>
+            {bitginData.responseData === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
+            {bitginData.responseData !== cheapestExchange && <OtherIcon />}
+            <ExchangeName>{bitginData.responseData.name}</ExchangeName>
             <ExchangeRates>
-              <Rate>買價: {exchange.buy_rate}</Rate>
-              <Rate>賣價: {exchange.sell_rate}</Rate>
+              <Rate>買價 : {bitginData.responseData.buy_rate}</Rate>
+              <Rate>賣價 : {bitginData.responseData.sell_rate}</Rate>
             </ExchangeRates>
-            <UpdateTime>Last updated: {new Date(Number(exchange.update_time)).toLocaleString()}</UpdateTime>
+            <UpdateTime>Last updated: {new Date(Number(bitginData.responseData.update_time)).toLocaleString()}</UpdateTime>
           </ExchangeContentBox>
         </ExchangeBox>
-      ))}
-      {/* Bitgin */}
-      <ExchangeBox backgroundimage="./bitgin.png">
-        <ExchangeContentBox>
-          {bitginData.responseData === cheapestExchange && <CrownIcon src="./crown.png" alt="Crown" />}
-          {bitginData.responseData !== cheapestExchange && <OtherIcon />}
-          <ExchangeName>{bitginData.responseData.name}</ExchangeName>
-          <ExchangeRates>
-            <Rate>買價 : {bitginData.responseData.buy_rate}</Rate>
-            <Rate>賣價 : {bitginData.responseData.sell_rate}</Rate>
-          </ExchangeRates>
-          <UpdateTime>Last updated: {new Date(Number(bitginData.responseData.update_time)).toLocaleString()}</UpdateTime>
-        </ExchangeContentBox>
-      </ExchangeBox>
-    </Container>
+      </Container>
+    </StyleSheetManager>
   );
 };
 
