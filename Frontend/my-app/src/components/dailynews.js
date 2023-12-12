@@ -3,17 +3,16 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const Container2 = styled.div`
-    width:85%;
     display: flex;
     color: white;
     flex-wrap: wrap;
     //flex-direction: column;
     max-height: 57vh; /* 設定框框的最大高度 */
     overflow-y: auto; /* 超過高度時顯示滾輪 */
-    border: 1px solid #ccc; /* 添加邊框 */
+    //border: 1px solid #ccc; /* 添加邊框 */
     border-radius: 8px; /* 可選，添加圓角效果 */
-    padding: 8px; /* 可選，添加內邊距 */
-    background-color : #EAE0D5;
+    //padding: 8px; /* 可選，添加內邊距 */
+    //background-color : #EAE0D5;
 
     /* 自定義滾動條樣式 */
     &::-webkit-scrollbar {
@@ -39,7 +38,7 @@ const Container2 = styled.div`
 const Container = styled.div`
     display:flex;
     justify-content:center;
-    margin-top : 2.5%
+    margin-top : 2%
 `
 const LinkContainer = styled.a`
     height : 280px;
@@ -61,6 +60,8 @@ const LinkContainer = styled.a`
 const ThreeImage = styled.img`
 width:309.5px;
 height:222px;
+object-fit:cover;
+border-radius:5px;
 `
 const MainImageItem = styled.div`
     width : 30%;
@@ -97,6 +98,7 @@ const NewsTitleContainer = styled.div`
     font-family: "Noto Serif TC","Noto Serif SC";
     position: absolute; /* 设置为绝对定位 */
     bottom: 0;
+    font-size:16px;
 
     &:hover {
         color: red; /* 在 Hover 時更改文字顏色 */
@@ -119,6 +121,7 @@ background-repeat: repeat;
 width: -webkit-fill-available;
 height: 350px;
 position: absolute;
+border-radius:8px;
 `;
 
 const TitleDate = styled.div`
@@ -136,7 +139,7 @@ const TitleTags = styled.div`
 border-radius: 20px;
 background-color: #e0e0e0;
 font-family: Roboto;
-font-size: 13px;
+font-size: 16px;
 font-weight: 500;
 line-height: 1;
 letter-spacing: .2px;
@@ -164,7 +167,7 @@ const LittleContainer = styled.div`
 
 const OtherNews = styled.div`
     display: flex;
-    width: 85%;
+    width: 100%;
     justify-content: space-around;
     margin-top : 50px;
 `
@@ -199,9 +202,11 @@ const OtherInformation = styled.div`
     margin-bottom : 10px;
 `
 const OtherNewsTitle = styled.div`
-    margin-top : 10px;
+    font-size:17px;
+    margin-top : 18px;
     width:60%;
-    font-family: "Noto Serif TC","Noto Serif SC";
+    //font-family: "Noto Serif TC","Noto Serif SC";
+    color:white;
     &:hover {
         color: red; /* 在 Hover 時更改文字顏色 */
     }
@@ -210,6 +215,7 @@ const DateContainer = styled.div`
     display:flex;
     width:60%;
     justify-content: flex-end;
+    
 `
 const OtherNewsDate = styled.div`
     font-family: Roboto;
@@ -220,10 +226,13 @@ const OtherNewsDate = styled.div`
     line-height: normal;
     letter-spacing: normal;
     color : grey;
+    font-size:12px;
 `
 const OtherNewsImg = styled.img`
-    width:217px;
+    width:70%;
     height : 196px;
+    border-radius : 8px;
+    object-fit: cover
 
 `
 
@@ -253,7 +262,7 @@ const DailyNews = () => {
 
     return (
         <div>
-            <Banner></Banner>
+            {/* <Banner></Banner> */}
             <Banner2></Banner2>
             <Container>
                 <TopContainer>
@@ -300,6 +309,7 @@ const DailyNews = () => {
                         </MainImageItem2>
                     ))}
                 </Container2>
+                {/* <TwdComparison></TwdComparison> */}
             </OtherNews>
 
         </div>
