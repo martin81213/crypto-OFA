@@ -20,6 +20,7 @@ function App() {
         <Route path = "/news" element = {<News/>}/>
         <Route path = "/indicators" element = {<StrongIndicators/>}/>
         <Route path = "/buycoins" element = {<BuyCoins/>}/>
+        {/* <Route path = "/discord" component={DiscordQrcode} /> */}
       </Routes>
     </QueryClientProvider>
   );

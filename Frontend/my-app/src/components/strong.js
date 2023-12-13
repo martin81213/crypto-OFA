@@ -1,6 +1,35 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import DiscordQrcode from "./qrcode";
 
+const Modal = styled.div`
+    color:black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius:8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`;
+
+const Overlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+`;
 
 const StyledListContainer = styled.div`
     max-width: 600px;
@@ -9,7 +38,7 @@ const StyledListContainer = styled.div`
     padding: 20px;
     border-radius: 8px;
     overflow-y: auto;
-    max-height: 80vh;
+    max-height: 78vh;
     scrollbar-width: thin; /* For Firefox */
     scrollbar-color: #a0a0a0 #f0f0f0; /* For Firefox */
     
@@ -35,6 +64,7 @@ const StyledTitle = styled.h1`
     color: grey;
     text-align: center;
     margin-bottom: 20px;
+
 `;
 
 const StyledList = styled.ul`
@@ -325,12 +355,35 @@ const StyledLink = styled.a`
 `;
 
 
+const DiscordIcon = styled.img`
+    width: 40px;
+    height:40px;
+    cursor: pointer;
+    margin-left:10px;
+    //margin-bottom:20px;
+`
+
+const TopContainer = styled.div`
+width:100%;
+    display:flex;
+    //justify-content:space-between;
+    justify-content:center;
+    align-items:center;
+`
+
+
 
 function StrongList() {
     const [tokenList, setTokenList] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleDiscordIconClick = () => {
+        setIsModalOpen(!isModalOpen);
+    };
 
     useEffect(() => {
         // Fetch data from the API
+        //fetch("http://52.63.5.206:5000/api/1.0/getStrongCoin")
         //fetch("http://localhost:5000/api/1.0/getStrongCoin")
         fetch("http://52.63.5.206:5000/api/1.0/getStrongCoin")
             .then(response => response.json())
@@ -345,7 +398,19 @@ function StrongList() {
 
     return (
         <div>
-            <StyledTitle>每日強勢標的</StyledTitle>
+            <TopContainer>
+                <StyledTitle>每日強勢標的</StyledTitle>
+                <DiscordIcon
+                    src="./discord.png"
+                    alt="Discord Icon"
+                    onClick={handleDiscordIconClick}
+                />
+            </TopContainer>
+            <Overlay isOpen={isModalOpen} onClick={handleDiscordIconClick} />
+            <Modal isOpen={isModalOpen}>
+                <h2>Join our Discord!</h2>
+                <DiscordQrcode />
+            </Modal>
             <StyledListContainer>
                 <ItemContainer>
                     <StyledList>
