@@ -8,9 +8,13 @@ import { WebhookClient } from 'discord.js'
 import cron from 'node-cron'
 import TechnicalIndicators from 'technicalindicators'
 import NodeCache from 'node-cache';
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 dotenv.config();
 const cache = new NodeCache();
 
@@ -34,6 +38,10 @@ const dbPool = mysql.createPool({
 
 // 使用中間件解析 JSON
 app.use(express.json());
+
+app.use('/.well-known/pki-validation/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'DA941A1D57DE9C48796A4E482080933D (1).txt'));
+})
 
 
 // RS相對強弱
