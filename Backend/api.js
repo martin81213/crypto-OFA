@@ -410,7 +410,7 @@ app.get('/api/1.0/getBitgin', async (req, res) => {
 cron.schedule('59 7 * * *', async () => {
     try {
         // 执行您的 API 逻辑，直接发起 HTTP 请求到 API 端点
-        const response = await axios.get('http://52.63.5.206/api/1.0/RS_signal');
+        const response = await axios.get('http://52.63.5.206:5000/api/1.0/RS_signal');
         const responseData = response.data;
 
         console.log('API 任务已执行', responseData);
