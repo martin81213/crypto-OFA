@@ -40,7 +40,7 @@ const dbPool = mysql.createPool({
 app.use(express.json());
 
 app.use('/.well-known/pki-validation/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'DA941A1D57DE9C48796A4E482080933D (1).txt'));
+    res.sendFile(path.join(__dirname, '4F8D0B995370E8E412551ACA308FCE5C.txt'));
 })
 
 
