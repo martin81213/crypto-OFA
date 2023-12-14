@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaBuilding } from "react-icons/fa";
+import SearchComponent from "./search";
+import SearchCakeComponent from "./searchCake";
+import { MdOutlineWork } from "react-icons/md";
 
 const Container = styled.div`
+    width:47%;
     display: flex;
     color: white;
     flex-direction: column;
     max-height: 80vh; /* 設定框框的最大高度 */
     overflow-y: auto; /* 超過高度時顯示滾輪 */
-    border: 1px solid #ccc; /* 添加邊框 */
+    //border: 1px solid #ccc; /* 添加邊框 */
     border-radius: 8px; /* 可選，添加圓角效果 */
-    padding: 8px; /* 可選，添加內邊距 */
-    background-color : black;
+    padding: 16px; /* 可選，添加內邊距 */
+    // background-color : black;
+    background-color: rgb(44 45 60 / 97%);
 
     /* 自定義滾動條樣式 */
     &::-webkit-scrollbar {
@@ -57,24 +62,21 @@ const LinkContainer = styled.a`
     }
 `
 
-const Title = styled.div`
-    color : yellow;
-    font-size: x-large;
-    margin-bottom : 1%;
+const Title = styled.img`
+    height:45px;
 `
 
-const TitleForCake = styled.div`
-    color : #00dcff;
-    font-size: x-large;
-    margin-bottom : 1%;
+const TitleForCake = styled.img`
+    height:45px;
 `
 /* 104 CSS*/
 const Date = styled.div`
-    width : 5%
+    width : 10%;
+    //color:grey;
 `
 const JobTitle = styled.div`
-    width : 35%;
-    margin-rignt:5%
+    width : 30%;
+    margin-right:20px;
 `
 const CompanyTitle = styled.div`
     width : 35%;
@@ -90,12 +92,12 @@ const CakeJobTitle = styled.div`
 `
 
 const CakeCompanyTitle = styled.div`
-    width : 30%;
+    width : 25%;
     margin-right:5%
 `
 
 const CakeJobTags = styled.div`
-    width : 25%
+    width : 30%
 `
 
 const JobInfoItem = styled.div`
@@ -108,59 +110,97 @@ const Divider = styled.div`
 border-bottom: 1px solid #ccc; /* 分隔線樣式 */
 `
 
+const AllContainer = styled.div`
+    display:flex;
+    justify-content:space-around;
+`
+
+const TitleContainer = styled.div`
+display : flex;
+justify-content:space-between;
+margin-bottom:20px;
+
+`
+
+
 const Jobs = () => {
     const [jobData, setJobData] = useState([])
+    const [cakeJobData, setCakeJobData] = useState([])
+
     console.log("123")
+    console.log(jobData);
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/1.0/getJobs")
+        //fetch("http://localhost:5000/api/1.0/getJobs")
+        fetch("http://52.63.5.206:5000/api/1.0/getJobs")
             .then((response) => response.json())
             .then((data) => {
-                setJobData(data.data)
+                setJobData(data.data[0])
+                setCakeJobData(data.data[1]);
                 console.log(data)
             })
             .catch((error) => {
-                console.error("Error fetching news data:", error);
+                console.error("Error fetching jobs data:", error);
             });
     }, []);
 
-    return (
-        <Container>
-            <Title>JOB --- From 104</Title>
-            {jobData[0] && jobData[0].length > 0 && jobData[0].map((news, index) => (
-                <Divider>
-                    <LinkContainer key={index} href={news.job_url.startsWith('https://') ? news.job_url : `https://${news.job_url}`} target="_blank">
-                        <NewsContent>
-                            <Date>{news.date}</Date>
-                            <JobTitle>{news.job_title}</JobTitle>
-                            <CompanyTitle><FaBuilding color="#3081D0"></FaBuilding> {news.company_title}</CompanyTitle>
-                            <JobTags>
-                                {news.job_tags.split(', ').map((tag, tagIndex) => (
-                                    <JobInfoItem>🔸{tag}</JobInfoItem>
-                                ))}
-                            </JobTags>
-                        </NewsContent>
-                    </LinkContainer>
-                </Divider>
-            ))}
-            <TitleForCake>JOB --- From CakeResume</TitleForCake>
-            {jobData[1] && jobData[1].length > 0 && jobData[1].map((news, index) => (
-                <Divider>
-                    <LinkContainer key={index} href={news.job_url.startsWith('https://www.cakeresume.com') ? news.job_url : `https://www.cakeresume.com${news.job_url}`} target="_blank">
-                        <NewsContent>
-                            <CakeJobTitle>{news.job_title}</CakeJobTitle>
-                            <CakeCompanyTitle><FaBuilding color="#3081D0"></FaBuilding> {news.company_title}</CakeCompanyTitle>
-                            <CakeJobTags>
-                                {news.job_tags.split(', ').map((tag, tagIndex) => (
-                                    <JobInfoItem>🔸{tag}</JobInfoItem>
-                                ))}
-                            </CakeJobTags>
-                        </NewsContent>
-                    </LinkContainer>
-                </Divider>
-            ))}
+    useEffect(() => {
+        console.log("Job data updated:", jobData);
+    }, [jobData]);
 
-        </Container>
+    useEffect(() => {
+        console.log("Job data updated:", jobData);
+    }, [cakeJobData]);
+
+    return (
+        <AllContainer>
+            <Container>
+                <TitleContainer>
+                    <Title src="./jobLogo/104.png"></Title>
+                    <SearchComponent setJobData={setJobData}></SearchComponent>
+                </TitleContainer>
+                <Divider></Divider>
+                {jobData && jobData.length > 0 && jobData.map((news, index) => (
+                    <Divider>
+                        <LinkContainer key={index} href={news.job_url.startsWith('https://') ? news.job_url : `https://${news.job_url}`} target="_blank">
+                            <NewsContent>
+                                <Date>{news.date}</Date>
+                                <JobTitle>{news.job_title}</JobTitle>
+                                <CompanyTitle><FaBuilding color="#3081D0"></FaBuilding> {news.company_title}</CompanyTitle>
+                                <JobTags>
+                                    {news.job_tags.split(', ').map((tag, tagIndex) => (
+                                        <JobInfoItem>🔸{tag}</JobInfoItem>
+                                    ))}
+                                </JobTags>
+                            </NewsContent>
+                        </LinkContainer>
+                    </Divider>
+                ))}
+            </Container>
+            <Container>
+                <TitleContainer>
+                    <TitleForCake src="./jobLogo/cake.png"></TitleForCake>
+                    <SearchCakeComponent setCakeJobData={setCakeJobData}></SearchCakeComponent>
+                </TitleContainer>
+                <Divider></Divider>
+                {cakeJobData && cakeJobData.length > 0 && cakeJobData.map((news, index) => (
+                    <Divider>
+                        <LinkContainer key={index} href={news.job_url.startsWith('https://www.cakeresume.com') ? news.job_url : `https://www.cakeresume.com${news.job_url}`} target="_blank">
+                            <NewsContent>
+                                <CakeJobTitle>{news.job_title}</CakeJobTitle>
+                                <CakeCompanyTitle><FaBuilding color="#3081D0"></FaBuilding> {news.company_title}</CakeCompanyTitle>
+                                <CakeJobTags>
+                                    {news.job_tags.split(', ').map((tag, tagIndex) => (
+                                        <JobInfoItem>🔸{tag}</JobInfoItem>
+                                    ))}
+                                </CakeJobTags>
+                            </NewsContent>
+                        </LinkContainer>
+                    </Divider>
+                ))}
+            </Container>
+        </AllContainer>
+
     );
 }
 

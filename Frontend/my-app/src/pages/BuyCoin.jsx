@@ -1,27 +1,19 @@
 import React from "react";
 import styled from "styled-components"
 import Navigation from "../components/navigation";
-import Jobs from "../components/jobs";
+import TwdComparison from "../components/twdcomparison";
 
 const PageContaniner = styled.div`
     display:flex
 `
+
 const RightHalf = styled.div`
 display : flex;
 flex-direction : column;
-background-color: rgb(44 45 60 / 97%);
+//background-color: rgb(44 45 60 / 97%);
+background-color: #ccc;
 width: -webkit-fill-available;
 //justify-content: center;
-`
-const JobsContainer = styled.div`
-display:flex;
-width: -webkit-fill-available;
-justify-content: space-around;
-margin-top:3%;
-
-`
-const TopInformation = styled.div`
-    display:flex;
 `
 const Headers = styled.div`
     background-color: #0B0E11;
@@ -35,24 +27,19 @@ const Headers = styled.div`
 
 `
 
-
-const Job = () => {
+const BuyCoins = () => {
     return (
         <PageContaniner>
             <Navigation>
             </Navigation>
             <RightHalf>
-            <Headers>
-                <span>Jobs</span>
-            </Headers>
-                <JobsContainer>
-                    <TopInformation>
-                        <Jobs></Jobs>
-                    </TopInformation>
-                </JobsContainer>
+                <Headers>
+                    <span>BuyUSDT</span>
+                </Headers>
+                <TwdComparison></TwdComparison>
             </RightHalf>
         </PageContaniner>
     )
 }
 
-export default Job;
+export default BuyCoins;
