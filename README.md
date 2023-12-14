@@ -1,4 +1,4 @@
-# Crypto OFA Readme
+# Crypto OFA
 一個web, 就能整合各大資訊 --> 工作 + 新聞 + 指標&高波動幣種 + 哪裡買USDT最便宜
 
 ## How to start?
