@@ -1,6 +1,18 @@
 # Crypto OFA Readme
-只需要一個web, 就能整合各大資訊, e.g 工作, 新聞, 指標&高波動幣種, 哪裡買USDT最便宜
+一個web, 就能整合各大資訊 --> 工作 + 新聞 + 指標&高波動幣種 + 哪裡買USDT最便宜
 
+## How to start?
+* #### Frontend :
+```
+npm install
+cd Frontend/my-app
+npm start
+```
+* #### Backend :
+```
+npm install
+node api.js
+```
 ## Main Feature
 * #### 最新的幣圈新聞
         透過爬蟲取得相關的新聞, 提供最新的資訊
