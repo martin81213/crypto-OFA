@@ -102,7 +102,7 @@ const CrownIcon = styled.img`
 
 const bitgin = async () => {
   //const response = await fetch('http://localhost:5000/api/1.0/getBitgin')
-  const response = await fetch('http://52.63.5.206:5000/api/1.0/getBitgin')
+  const response = await fetch('https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/api/api/1.0/getBitgin')
   const data = await response.json();
   console.log(data);
   return data;
@@ -110,7 +110,7 @@ const bitgin = async () => {
 
 const markets = async () => {
   //const response = await fetch('http://localhost:5000/api/1.0/getUsdtPrice/')
-  const response = await fetch('http://52.63.5.206:5000/api/1.0/getUsdtPrice/')
+  const response = await fetch('https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/api/api/1.0/getUsdtPrice/')
   const data2 = await response.json();
   console.log('交易所Data: ', data2);
   return data2;

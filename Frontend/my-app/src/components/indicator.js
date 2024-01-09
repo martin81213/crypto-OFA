@@ -113,7 +113,7 @@ function Indicators() {
 
         //fetch("http://localhost:5000/api/1.0/getMA", {
 
-        fetch("http://52.63.5.206:5000/api/1.0/getMA", {
+        fetch("https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/api/api/1.0/getMA", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
