@@ -55,7 +55,7 @@ const SearchCakeComponent = ({ setCakeJobData }) => {
             console.log(searchTerm);
     
             //const response = await fetch(`http://localhost:5000/api/1.0/searchCake?query=${searchTerm}`);
-            const response = await fetch(`http://52.63.5.206:5000/api/1.0/searchCake?query=${searchTerm}`);
+            const response = await fetch(`https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/api/api/1.0/searchCake?query=${searchTerm}`);
     
             if (!response.ok) {
                 throw new Error("Network response was not ok");

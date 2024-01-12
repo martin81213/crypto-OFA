@@ -132,7 +132,7 @@ const Jobs = () => {
 
     useEffect(() => {
         //fetch("http://localhost:5000/api/1.0/getJobs")
-        fetch("http://52.63.5.206:5000/api/1.0/getJobs")
+        fetch("https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/api/api/1.0/getJobs")
             .then((response) => response.json())
             .then((data) => {
                 setJobData(data.data[0])

@@ -13,6 +13,9 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 
+
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config();
@@ -25,6 +28,7 @@ const secretKey = process.env.BINANCE_PASSWORD;
 const DiscordWebHookClient = new WebhookClient({
     url: process.env.DISCORD_WEBHOOK
 })
+
 app.use(cors())
 
 // MySQL 連接設定
@@ -267,7 +271,7 @@ app.get('/api/1.0/search104', async (req, res) => {
     console.log(keyword);
     let temp = [];
     // 開始query
-    dbPool.query(`SELECT * FROM jobs where job_title LIKE "%${keyword}"`, (error, results) => {
+    dbPool.query(`SELECT * FROM jobs WHERE job_title LIKE "%${keyword}%"`, (error, results) => {
         if (error) {
             console.error(error);
             res.status(500).json({ message: 'search error' });
@@ -287,7 +291,7 @@ app.get('/api/1.0/searchCake', async (req, res) => {
     console.log(keyword);
     let temp = [];
     // 開始query
-    dbPool.query(`SELECT * FROM cakeJobs where job_title LIKE "%${keyword}"`, (error, results) => {
+    dbPool.query(`SELECT * FROM cakeJobs where job_title LIKE "%${keyword}%"`, (error, results) => {
         if (error) {
             console.error(error);
             res.status(500).json({ message: 'search error' });

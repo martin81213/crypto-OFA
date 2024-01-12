@@ -385,7 +385,7 @@ function StrongList() {
         // Fetch data from the API
         //fetch("http://52.63.5.206:5000/api/1.0/getStrongCoin")
         //fetch("http://localhost:5000/api/1.0/getStrongCoin")
-        fetch("http://52.63.5.206:5000/api/1.0/getStrongCoin")
+        fetch("https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/api/api/1.0/getStrongCoin")
             .then(response => response.json())
             .then((data) => {
                 // Process API response
