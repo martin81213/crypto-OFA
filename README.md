@@ -2,7 +2,7 @@
 整合各大資訊 --> 工作 + 新聞 + 指標&高波動幣種 + 哪裡買USDT最便宜
 
 ## 網址
-http://52.63.5.206/
+https://ec2-52-63-5-206.ap-southeast-2.compute.amazonaws.com/
 
 ## How to start?
 * #### Frontend :
