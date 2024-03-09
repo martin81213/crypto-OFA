@@ -54,7 +54,8 @@ node api.js
     * fetch
       
 ## Architecture
-  ![image](https://github.com/martin81213/crypto_OFA/assets/88333551/51229a92-26c1-4488-b1ce-8cccdea30367)
+  ![image](https://github.com/martin81213/crypto-OFA/assets/88333551/f98ea944-44ce-4cdb-95b7-a7dd35af953e)
+
 ## Data Schema
 ```e=
 Table 1: cakejobs
